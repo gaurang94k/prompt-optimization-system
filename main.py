@@ -747,6 +747,10 @@ class ReviseResp(BaseModel):
 # ============================================================
 # 12) ENDPOINTS
 # ============================================================
+@app.on_event("startup")
+def _startup():
+    init_gemini()
+
 @app.get("/health")
 def health():
     return {"status": "ok", "model": MODEL_NAME, "sessions": len(SESSIONS)}
